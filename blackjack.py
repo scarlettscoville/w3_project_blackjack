@@ -14,7 +14,7 @@ myLabel1.grid(row=0, column=0)
 myLabel2.grid(row=1, column=1)
 
 root.mainloop()
-#--------------------------------------------------------------#
+#------------------------GAME--------------------------------------#
 
 
 class Dealer():
@@ -33,10 +33,6 @@ class Dealer():
         import os
         os.system('cls' if os.name == 'nt' else 'clear')
         # puts cards back in deck - reinitializes deck
-
-
-
-    
 
 class Player():
     def __init__(self):
@@ -59,11 +55,16 @@ class Deck():
         pass
         # Look into Fisher-Yates shuffle for shuffling algorithm? [https://www.youtube.com/watch?v=4zx5bM2OcvA]
 
+    def deal_cards():
+        pass
+
 class Player_UI():
     def __init__(self):
         pass
 
     def start_game():
+        # 1st - option to start game upon opening program
+        # graphics menu
         pass
     
     def start_hand():
@@ -78,4 +79,6 @@ class Player_UI():
         # will work before the dealer.hit_me
         pass
 
-    
+    # Driver Code #
+#if __name__ == '__main__':
+#    Game.play_game() ##Need to adjust for this game.
