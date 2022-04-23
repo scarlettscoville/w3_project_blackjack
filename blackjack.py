@@ -64,6 +64,9 @@ class Player_UI():
 
     def start_game():
         # 1st - option to start game upon opening program
+        play_game = input("Would you like to begin? [Y / N] ").capitalize()
+        if play_game == "Y":
+            
         # graphics menu
         pass
     
