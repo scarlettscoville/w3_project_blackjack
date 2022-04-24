@@ -130,6 +130,21 @@ class Card():
     def show(self):
         print("{self.value} of {self.suit}")
 
+    # Resize Cards
+    def resize_cards(card):
+	    # Open the image
+	    our_card_img = Image.open(card)
+
+	    # Resize The Image
+	    our_card_resize_image = our_card_img.resize((150, 218))
+	
+	    # output the card
+	    global our_card_image
+	    our_card_image = ImageTk.PhotoImage(our_card_resize_image)
+
+	    # Return that card
+	    return our_card_image    
+
 class Deck():
     def __init__(self):
         pass
@@ -159,7 +174,8 @@ class Deck():
     def start_game(self):
         self.players = []
         self.dealers = []
-        
+
+       
 
 class Player_UI():
     def __init__(self):
