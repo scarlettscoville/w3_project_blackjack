@@ -33,7 +33,7 @@ class Player():
         self.hand = []
     
     def hit_me(self):
-        #else loop back
+        
         pass
 
     def show_cards(self):
@@ -60,10 +60,13 @@ class Deck():
             for value in range(1,14):
                 self.cards.append(Card(suit, value))
         
-    def shuffle_cards():
-        pass
+    def shuffle_cards(self):
+        for i in range(len(self.cards)-1, 0, -1):
+            r = random.randint(0, i)
+            self.cards[i], self.cards[r] = self.cards[r], self.cards[i]
        
     def draw_cards(self):
+
         pass
 
     def deal_cards():
