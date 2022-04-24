@@ -5,9 +5,9 @@ from tkinter import messagebox
 
 root = Tk()
 root.title('Dream Team Blackjack - Card Deck')
-root.iconbitmap('./images/Blackjack project icon.png')
+root.iconbitmap('./images/dtbj_favicon.png')
 root.geometry("1200x800")
-root.configure(background="green")
+root.configure(background="#274e13")
 
 # Stand
 def stand():
@@ -405,50 +405,50 @@ def deal_cards():
 
 
 
-my_frame = Frame(root, bg="green")
+my_frame = Frame(root, bg="#274e13")
 my_frame.pack(pady=20)
 
 # Create Frames For Cards
-dealer_frame = LabelFrame(my_frame, text="Dealer", bd=0)
+dealer_frame = LabelFrame(my_frame, text="Dealer", font=("Helvetica", 14), bd=0, bg="#222222", fg="#FFFFFF")
 dealer_frame.pack(padx=20, ipadx=20)
 
-player_frame = LabelFrame(my_frame, text="Player", bd=0)
+player_frame = LabelFrame(my_frame, text="Player", font=("Helvetica", 14), bd=0, bg="#222222", fg="#FFFFFF")
 player_frame.pack(ipadx=20, pady=10)
 
 # Put Dealer cards in frames
-dealer_label_1 = Label(dealer_frame, text='')
+dealer_label_1 = Label(dealer_frame, text='', bg="#222222")
 dealer_label_1.grid(row=0, column=0, pady=20, padx=20)
 
-dealer_label_2 = Label(dealer_frame, text='')
+dealer_label_2 = Label(dealer_frame, text='', bg="#222222")
 dealer_label_2.grid(row=0, column=1, pady=20, padx=20)
 
-dealer_label_3 = Label(dealer_frame, text='')
+dealer_label_3 = Label(dealer_frame, text='', bg="#222222")
 dealer_label_3.grid(row=0, column=2, pady=20, padx=20)
 
-dealer_label_4 = Label(dealer_frame, text='')
+dealer_label_4 = Label(dealer_frame, text='', bg="#222222")
 dealer_label_4.grid(row=0, column=3, pady=20, padx=20)
 
-dealer_label_5 = Label(dealer_frame, text='')
+dealer_label_5 = Label(dealer_frame, text='', bg="#222222")
 dealer_label_5.grid(row=0, column=4, pady=20, padx=20)
 
 # Put Player cards in frames
-player_label_1 = Label(player_frame, text='')
+player_label_1 = Label(player_frame, text='', bg="#222222")
 player_label_1.grid(row=1, column=0, pady=20, padx=20)
 
-player_label_2 = Label(player_frame, text='')
+player_label_2 = Label(player_frame, text='', bg="#222222")
 player_label_2.grid(row=1, column=1, pady=20, padx=20)
 
-player_label_3 = Label(player_frame, text='')
+player_label_3 = Label(player_frame, text='', bg="#222222")
 player_label_3.grid(row=1, column=2, pady=20, padx=20)
 
-player_label_4 = Label(player_frame, text='')
+player_label_4 = Label(player_frame, text='', bg="#222222")
 player_label_4.grid(row=1, column=3, pady=20, padx=20)
 
-player_label_5 = Label(player_frame, text='')
+player_label_5 = Label(player_frame, text='', bg="#222222")
 player_label_5.grid(row=1, column=4, pady=20, padx=20)
 
 # Create Button Frame
-button_frame = Frame(root, bg="green")
+button_frame = Frame(root, bg="#274e13")
 button_frame.pack(pady=20)
 
 # Create a couple buttons
