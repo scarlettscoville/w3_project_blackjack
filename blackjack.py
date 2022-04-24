@@ -55,31 +55,45 @@ class Dealer():
         # puts cards back in deck - reinitializes deck
 
 class Player():
-    def __init__(self):
+    def __init__(self, name):
+        self.name = name
+        self.hand = []
         pass
     
-    def hit_me(self):
+    def hit_me(self, deck):
+        self.hand.append(deck.draw_cards())
+        self.hand.append(deck.draw_cards())
         #else loop back
         pass
 
     def show_cards(self):
-        #for c in self.cards:
-            #c.show()
+        for card in self.hand:
+            card.show()
         pass
+
+class Card():
+    def __init__(self, suit, value):
+        self.suit = suit
+        self.value = value
+
+    def show(self):
+        print("{} {}".format(self.suit, self.value))
 
 class Deck(): #card class in video
     def __init__(self):
         pass
 
-    # holds our card values
-    
     def shuffle_cards():
         pass
        
-        
+    def draw_cards(self):
+        pass
 
     def deal_cards():
         pass
+    
+    def show(self):
+        print("{} of {}").format(self.value, self.suit)
 
 class Player_UI():
     def __init__(self):
