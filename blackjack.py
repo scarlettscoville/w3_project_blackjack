@@ -41,43 +41,59 @@ class Dealer():
     def __init__(self):
         pass
     
-    def hit_me():
+    def hit_me(self):
         # if sum of two cards is 16 and below, hit
             # if 17 or above, pass
         pass
 
-    def show_cards():
+    def show_cards(self):
         pass
 
-    def clear_screen():
+    def clear_screen(self):
         import os
         os.system('cls' if os.name == 'nt' else 'clear')
         # puts cards back in deck - reinitializes deck
 
 class Player():
-    def __init__(self):
+    def __init__(self, name):
+        self.name = name
+        self.hand = []
         pass
     
-    def hit_me():
+    def hit_me(self, deck):
+        self.hand.append(deck.draw_cards())
+        self.hand.append(deck.draw_cards())
         #else loop back
         pass
 
-    def show_cards():
+    def show_cards(self):
+        for card in self.hand:
+            card.show()
         pass
 
-class Deck():
+class Card():
+    def __init__(self, suit, value):
+        self.suit = suit
+        self.value = value
+
+    def show(self):
+        print("{} {}".format(self.suit, self.value))
+
+class Deck(): #card class in video
     def __init__(self):
         pass
 
-    # holds our card values
-    
     def shuffle_cards():
         pass
        
-        
+    def draw_cards(self):
+        pass
 
     def deal_cards():
         pass
+    
+    def show(self):
+        print("{} of {}").format(self.value, self.suit)
 
 class Player_UI():
     def __init__(self):
