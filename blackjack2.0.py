@@ -65,8 +65,6 @@ class Deck():
         self.dealer_hand.append(self.draw)
         # Change to have only 1 card viewed
 
-
-    
     def show(self):
         for card in self.cards:
             card.show()
@@ -151,6 +149,50 @@ class Table():
                 return "BLACKJACK!!!"
         return self
 
+    def hit_me(self):
+        global player_spot
+        if player_spot < 5:
+            player_hand = random.choice(self.cards)
+            self.cards.remove(player_hand)
+            self.hand.append(player_hand)
+            global player_image, player_image1, player_image2, player_image3, player_image4
+            
+            if player_spot == 0:
+                # Resize Card
+                player_image = self.resize_cards(f'images/cards/{player_card}.png')
+                # Output card to screen    
+                player_label_1.config(image=player_image)
+                # Increment player card by 1
+                player_spot += 1
+            elif player_spot == 1:
+                # Resize Card
+                player_image1 = self.resize_cards(f'images/cards/{player_card}.png')
+                # Output card to screen    
+                player_label_1.config(image=player_image1)
+                # Increment player card by 1
+                player_spot += 1
+            elif player_spot == 2:
+                # Resize Card
+                player_image2 = self.resize_cards(f'images/cards/{player_card}.png')
+                # Output card to screen    
+                player_label_2.config(image=player_image2)
+                # Increment player card by 1
+                player_spot += 1
+            elif player_spot == 3:
+                # Resize Card
+                player_image3 = self.resize_cards(f'images/cards/{player_card}.png')
+                # Output card to screen    
+                player_label_3.config(image=player_image3)
+                # Increment player card by 1
+                player_spot += 1
+            elif player_spot == 4:
+                # Resize Card
+                player_image4 = self.resize_cards(f'images/cards/{player_card}.png')
+                # Output card to screen    
+                player_label_4.config(image=player_image4)
+                # Increment player card by 1
+                player_spot += 1
+
     def dealer_bust(self):
         dealer_total = sum(self.dealer_hand)
         while self.dealer_hand:
@@ -161,9 +203,4 @@ class Table():
                     return "Player Wins"
             elif dealer_total < 16:
                 self.hit_me()
-            
 
-
-        # input: Do you want to hit or pass?
-        # will work before the dealer.hit_me
-        pass
