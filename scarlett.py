@@ -1,8 +1,6 @@
-# Let's go, Dream Team!
-
-
-import random
 from tkinter import *
+import random
+from PIL import Image, ImageTk
 
 root = Tk()
 root.title('Dream Team Blackjack')
@@ -10,6 +8,20 @@ root.iconbitmap('./images/Blackjack project icon.png')
 root.geometry("900x500")
 root.configure(background="green")
 #------------Will move to Classes----------------
+def resize_cards(card):
+    # Open the image
+    our_card_img = Image.open(card)
+
+    # Resize the image
+    global our_card_resize_image
+    
+    our_card_resize_image = our_card_img.resize((150, 218))
+
+    our_card_image = ImageTk.PhotoImage(our_card_resize_image)
+
+    # Return that card
+    return our_card_image
+
 def shuffle():
     suits = ["diamonds", "clubs", "hearts", "spades"]
     values = range(2,15)
@@ -33,7 +45,10 @@ def shuffle():
     # Append card to dealer list
     dealer.append(card)
     # Output card to screen
-    dealer_label.config(text=card)
+    global dealer_image
+    dealer_image = resize_cards(f'images/deck/{card}.png')
+
+    dealer_label.config(image=dealer_image)
 
     # Grab a random card for player
     card = random.choice(deck)
@@ -42,7 +57,10 @@ def shuffle():
     # Append card to player list
     player.append(card)
     # Output card to screen
-    player_label.config(text=card)
+    global player_image
+    player_image = resize_cards(f'images/deck/{card}.png')
+
+    player_label.config(image=player_image)
 
 def hit_me():
     try:
@@ -57,7 +75,7 @@ def hit_me():
         player_label.config(text=card)
     
     except:
-
+        pass
 #---------------------------------------------------
 
 my_frame = Frame(root, bg="green")
@@ -82,76 +100,4 @@ hit_button = Button(root, text="Hit", font=("Ariel", 14), command=hit_me)
 hit_button.pack(pady=20)
 
 
-
-
-
 root.mainloop()
-#------------------------GAME--------------------------------------#
-
-
-class Dealer():
-    def __init__(self):
-        pass
-    
-    def hit_me():
-        # if sum of two cards is 16 and below, hit
-            # if 17 or above, pass
-        pass
-
-    def show_cards():
-        pass
-
-    def clear_screen():
-        import os
-        os.system('cls' if os.name == 'nt' else 'clear')
-        # puts cards back in deck - reinitializes deck
-
-class Player():
-    def __init__(self):
-        pass
-    
-    def hit_me():
-        #else loop back
-        pass
-
-    def show_cards():
-        pass
-
-class Deck():
-    def __init__(self):
-        pass
-
-    # holds our card values
-    
-    def shuffle_cards():
-        pass
-       
-        
-
-    def deal_cards():
-        pass
-
-class Player_UI():
-    def __init__(self):
-        pass
-
-    def start_game():
-        # 1st - option to start game upon opening program
-        # graphics menu
-        pass
-    
-    def start_hand():
-        # -bets 
-        # -deal cards (both cards available to player, only one dealer card shown)
-        # -shuffle
-        # input - play again?
-        pass
-    
-    def hit_me():
-        # input: Do you want to hit or pass?
-        # will work before the dealer.hit_me
-        pass
-
-    # Driver Code #
-#if __name__ == '__main__':
-#    Game.play_game() ##Need to adjust for this game.
