@@ -6,7 +6,6 @@ from tkinter import messagebox
 
 root = Tk()
 root.title('Dream Team Blackjack')
-<<<<<<< HEAD
 root.iconbitmap('./images/Blackjack project icon.png')
 root.geometry("900x500")
 root.configure(background="green")
@@ -30,32 +29,25 @@ player_label.pack(pady=20)
 shuffle_button = Button(root, text="Shuffle Deck", font=("Ariel", 14))
 shuffle_button.pack(pady=20)
 
-hit_button = Button(root, text="Hit", font=("Ariel", 14), command=hit_me)
-hit_button.pack(pady=20)
+#hit_button = Button(root, text="Hit", font=("Ariel", 14), command= Player.hit_me())
+#hit_button.pack(pady=20)
 
 
 root.mainloop()
 #------------------------GAME--------------------------------------#
 
 
-=======
-root.iconbitmap('./images/dtbj_favicon.png')
-root.geometry("1200x800")
-root.configure(background="#274e13")
-#--------------------START GAME CODE-----------------------------------------#
->>>>>>> refs/remotes/origin/main
 class Dealer():
     def __init__(self):
         pass
     
-<<<<<<< HEAD
     def hit_me():
         global dealer_spot
         if dealer_spot < 5:
             try:
                 dealer_card = random.choice(deck)
                 deck.remove(dealer_card)
-                dealer.append(dealer_card)
+                Dealer.append(dealer_card)
                 global dealer_image1, dealer_image2, dealer_image3, dealer_image4, dealer_image5
                 
                 if dealer_spot == 0:
@@ -100,12 +92,6 @@ class Dealer():
 
             except:
                 root.title(f'Dream Team Blackjack')
-=======
-    def hit_me(self):
-        # if sum of two cards is 16 and below, hit
-            # if 17 or above, pass
-        pass
->>>>>>> refs/remotes/origin/main
 
     def show_cards(self):
         pass
@@ -142,21 +128,13 @@ class Card():
         self.value = value
 
     def show(self):
-        print("{} of {}".format(self.value, self.suit))
+        print("{self.value} of {self.suit}")
 
 class Deck():
     def __init__(self):
         pass
         self.cards = []
 
-<<<<<<< HEAD
-    # holds our card values
-    
-    def shuffle_cards():
-        # Shuffle 2 cards for player and dealer
-        
-       
-=======
     def build_deck(self):
         suits = ["Diamonds", "Hearts", "Spades", "Clubs"]
         for suit in suits:
@@ -170,7 +148,6 @@ class Deck():
        
     def draw(self):
         return self.cards.pop()
->>>>>>> refs/remotes/origin/main
 
     def deal():
         pass
@@ -197,14 +174,14 @@ class Player_UI():
         # graphics menu
         
     
-    def start_hand():
+    def start_hand(self):
         # -bets 
         # -deal cards (both cards available to player, only one dealer card shown)
         # -shuffle
         # input - play again?
         pass
     
-    def hit_me():
+    def hit_me(self):
         global player_spot
         if player_spot < 5:
             try:
@@ -263,6 +240,24 @@ class Player_UI():
 
 #-----------------------------------------------------------------#
 #--------------START TKINTER FOOTER CODE--------------------------#
+def resize_cards(card):
+	# Open the image
+	our_card_img = Image.open(card)
+
+	# Resize The Image
+	our_card_resize_image = our_card_img.resize((150, 218))
+	
+	# output the card
+	global our_card_image
+	our_card_image = ImageTk.PhotoImage(our_card_resize_image)
+
+	# Return that card
+	return our_card_image
+
+
+
+
+
 my_frame = Frame(root, bg="#274e13")
 my_frame.pack(pady=20)
 
