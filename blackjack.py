@@ -31,11 +31,8 @@ class Player():
     def __init__(self, name):
         self.name = name
         self.hand = []
-        pass
     
-    def hit_me(self, deck):
-        self.hand.append(deck.draw_cards())
-        self.hand.append(deck.draw_cards())
+    def hit_me(self):
         #else loop back
         pass
 
@@ -50,12 +47,19 @@ class Card():
         self.value = value
 
     def show(self):
-        print("{} {}".format(self.suit, self.value))
+        print("{} of {}".format(self.value, self.suit))
 
-class Deck(): #card class in video
+class Deck():
     def __init__(self):
         pass
+        self.cards = []
 
+    def build_deck(self):
+        suits = ["Diamonds", "Hearts", "Spades", "Clubs"]
+        for suit in suits:
+            for value in range(1,14):
+                self.cards.append(Card(suit, value))
+        
     def shuffle_cards():
         pass
        
@@ -66,7 +70,8 @@ class Deck(): #card class in video
         pass
     
     def show(self):
-        print("{} of {}").format(self.value, self.suit)
+        for card in self.cards:
+            card.show()
 
 class Player_UI():
     def __init__(self):
@@ -160,3 +165,8 @@ root.mainloop()
 # ---------Driver Code-----------#
 #if __name__ == '__main__':
 #    Game.play_game() ##Need to adjust for this game.
+
+
+deck = Deck()
+# deck.build_deck()
+deck.show()
