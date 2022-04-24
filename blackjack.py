@@ -1,7 +1,7 @@
 # Let's go, Dream Team!
 from tkinter import *
 import random
-from PIL import Image, ImageTk
+# from PIL import Image, ImageTk
 from tkinter import messagebox
 
 root = Tk()
@@ -34,12 +34,13 @@ class Player():
     
     def hit_me(self):
         self.hand.append(deck.draw())
-        for card in self.hand():
-            if sum(self.hand) > 21:
+        player_hand = sum(self.hand)
+        while self.hand:
+            if player_hand > 21:
                 return "BUST!"
-            elif sum(self.hand) < 21:
+            elif player_hand < 21:
                 pass
-            elif sum(self.hand) == 21:
+            elif player_hand == 21:
                 return "BLACKJACK!!!"
         return self
 
@@ -153,14 +154,14 @@ button_frame = Frame(root, bg="green")
 button_frame.pack(pady=20)
 
 # Create a couple buttons
-shuffle_button = Button(button_frame, text="Shuffle Deck", font=("Helvetica", 14), command=shuffle)
+shuffle_button = Button(button_frame, text="Shuffle Deck", font=("Helvetica", 14), command= Deck.shuffle_cards)
 shuffle_button.grid(row=0, column=0)
 
-card_button = Button(button_frame, text="Hit Me!", font=("Helvetica", 14), command=player_hit)
+card_button = Button(button_frame, text="Hit Me!", font=("Helvetica", 14), command= Player.hit_me)
 card_button.grid(row=0, column=1, padx=10)
 
-stand_button = Button(button_frame, text="Stand!", font=("Helvetica", 14), command=stand)
-stand_button.grid(row=0, column=2)
+ # stand_button = Button(button_frame, text="Stand!", font=("Helvetica", 14), command= stand)
+ # stand_button.grid(row=0, column=2)
 
 
 
