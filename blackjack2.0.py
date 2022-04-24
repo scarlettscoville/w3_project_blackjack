@@ -1,14 +1,6 @@
 # Let's go, Dream Team!
-from tkinter import *
 import random
-from PIL import Image, ImageTk
-from tkinter import messagebox
 
-root = Tk()
-root.title('Dream Team Blackjack')
-root.iconbitmap('./images/dtbj_favicon.png')
-root.geometry("1200x800")
-root.configure(background="#274e13")
 ## --------------------------------------------------------------------------##
 
 ## Classes:
@@ -26,25 +18,27 @@ class Card(): #
     def show(self):
          return "{} of {}".format(self.value, self.suit)
 
-    def resize_cards(card):
+    #def resize_cards(card):
         # Open the image
-        our_card_img = Image.open(card)
+        #our_card_img = Image.open(card)
 
         # Resize The Image
-        our_card_resize_image = our_card_img.resize((150, 218))
+        #our_card_resize_image = our_card_img.resize((150, 218))
     
         # output the card
-        global our_card_image
-        our_card_image = ImageTk.PhotoImage(our_card_resize_image)
+        #global our_card_image
+        #our_card_image = ImageTk.PhotoImage(our_card_resize_image)
 
         # Return that card
-        return our_card_image 
+        #return our_card_image 
 
 class Deck():
     def __init__(self):
+        global cards
         self.cards = []
 
     def build_deck(self):
+
         suits = ["Diamonds", "Hearts", "Spades", "Clubs"]
         for suit in suits:
             for value in range(1,14):
@@ -85,10 +79,9 @@ class Table():
     def start_game(self):
         # 1st - option to start game upon opening program
         play_game = input("Would you like to begin? [Y / N] ").capitalize()
-        if play_game == "Y":
-            Table.start_game() 
-        self.build_deck()
-        self.run_game()
+        if play_game == "Y": 
+            Deck.build_deck(self)
+            self.run_game()
         
     def run_game(self):
         self.cards.shuffle_cards()
@@ -111,46 +104,7 @@ class Table():
             player_hand = random.choice(self.cards)
             self.cards.remove(player_hand)
             self.hand.append(player_hand)
-            global player_image, player_image1, player_image2, player_image3, player_image4
-            
-            if player_spot == 0:
-                # Resize Card
-                player_image = self.resize_cards(f'images/cards/{player_card}.png')
-                # Output card to screen    
-                player_label_1.config(image=player_image)
-                # Increment player card by 1
-                player_spot += 1
-            elif player_spot == 1:
-                # Resize Card
-                player_image1 = self.resize_cards(f'images/cards/{player_card}.png')
-                # Output card to screen    
-                player_label_1.config(image=player_image1)
-                # Increment player card by 1
-                player_spot += 1
-            elif player_spot == 2:
-                # Resize Card
-                player_image2 = self.resize_cards(f'images/cards/{player_card}.png')
-                # Output card to screen    
-                player_label_2.config(image=player_image2)
-                # Increment player card by 1
-                player_spot += 1
-            elif player_spot == 3:
-                # Resize Card
-                player_image3 = self.resize_cards(f'images/cards/{player_card}.png')
-                # Output card to screen    
-                player_label_3.config(image=player_image3)
-                # Increment player card by 1
-                player_spot += 1
-            elif player_spot == 4:
-                # Resize Card
-                player_image4 = self.resize_cards(f'images/cards/{player_card}.png')
-                # Output card to screen    
-                player_label_4.config(image=player_image4)
-                # Increment player card by 1
-                player_spot += 1
-
-                root.title(f'Dream Team Blackjack - {len(self.cards)} Cards Left')
-                root.title(f'Dream Team Blackjack')
+           
 
     def bust(self):
         player_hand = sum(self.hand)
@@ -169,43 +123,7 @@ class Table():
             dealer_view = random.choice(self.cards)
             self.cards.remove(dealer_view)
             self.hand.append(dealer_view)
-            global player_image, player_image1, player_image2, player_image3, player_image4
             
-            if dealer_spot == 0:
-                # Resize Card
-                player_image = self.resize_cards(f'images/cards/{player_card}.png')
-                # Output card to screen    
-                player_label_1.config(image=player_image)
-                # Increment player card by 1
-                dealer_spot += 1
-            elif player_spot == 1:
-                # Resize Card
-                player_image1 = self.resize_cards(f'images/cards/{player_card}.png')
-                # Output card to screen    
-                player_label_1.config(image=player_image1)
-                # Increment player card by 1
-                dealer_spot += 1
-            elif player_spot == 2:
-                # Resize Card
-                player_image2 = self.resize_cards(f'images/cards/{player_card}.png')
-                # Output card to screen    
-                player_label_2.config(image=player_image2)
-                # Increment player card by 1
-                dealer_spot += 1
-            elif player_spot == 3:
-                # Resize Card
-                player_image3 = self.resize_cards(f'images/cards/{player_card}.png')
-                # Output card to screen    
-                player_label_3.config(image=player_image3)
-                # Increment player card by 1
-                dealer_spot += 1
-            elif player_spot == 4:
-                # Resize Card
-                player_image4 = self.resize_cards(f'images/cards/{player_card}.png')
-                # Output card to screen    
-                player_label_4.config(image=player_image4)
-                # Increment player card by 1
-                dealer_spot += 1
 
     def dealer_bust(self):
         dealer_total = sum(self.dealer_hand)
@@ -218,3 +136,10 @@ class Table():
             elif dealer_total < 16:
                 self.dealer_hit()
 
+#def main():
+    ## DRIVER CODE ##
+ui = Table()
+ui.start_game()
+
+#if __name__=="__main__":
+ #   main()
