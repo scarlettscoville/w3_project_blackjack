@@ -164,8 +164,12 @@ class Deck():
     def draw(self):
         return self.cards.pop()
 
-    def deal():
-        pass
+    def deal(self):
+        self.hand.append(self.draw) 
+        self.hand.append(self.draw)
+        self.dealer_hand.append(self.draw)
+        self.dealer_hand.append(self.draw)
+
     
     def show(self):
         for card in self.cards:
