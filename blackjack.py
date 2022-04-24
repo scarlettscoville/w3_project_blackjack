@@ -34,6 +34,13 @@ class Player():
     
     def hit_me(self):
         self.hand.append(deck.draw())
+        for card in self.hand():
+            if sum(self.hand) > 21:
+                return "BUST!"
+            elif sum(self.hand) < 21:
+                pass
+            elif sum(self.hand) == 21:
+                return "BLACKJACK!!!"
         return self
 
     def show_cards(self):
@@ -157,8 +164,8 @@ stand_button.grid(row=0, column=2)
 
 
 
-# Shuffle Deck On Start
-shuffle()
+# Shuffle Deck On Start, should be handled in UI now
+# shuffle()
 
 
 root.mainloop()
