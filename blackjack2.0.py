@@ -1,14 +1,10 @@
 # Let's go, Dream Team!
-from tkinter import *
+#from tkinter import *
 import random
-from PIL import Image, ImageTk
-from tkinter import messagebox
+#from PIL import Image, ImageTk
+#from tkinter import messagebox
 
-root = Tk()
-root.title('Dream Team Blackjack')
-root.iconbitmap('./images/dtbj_favicon.png')
-root.geometry("1200x800")
-root.configure(background="#274e13")
+#t.configure(background="#274e13")
 ## --------------------------------------------------------------------------##
 
 ## Classes:
@@ -44,7 +40,7 @@ class Deck():
     def __init__(self):
         self.cards = []
 
-    def build_deck(self):
+    def build_deck(self, cards):
         suits = ["Diamonds", "Hearts", "Spades", "Clubs"]
         for suit in suits:
             for value in range(1,14):
@@ -86,10 +82,9 @@ class Table():
         # 1st - option to start game upon opening program
         play_game = input("Would you like to begin? [Y / N] ").capitalize()
         if play_game == "Y":
-            Table.start_game() 
-        self.build_deck()
-        self.cards.shuffle_cards()
-        self.deal()
+            Deck.build_deck(self)
+            Deck.shuffle_cards()
+            Deck.deal()
     
     def hit_me(self):
         global player_spot
@@ -204,3 +199,10 @@ class Table():
             elif dealer_total < 16:
                 self.hit_me()
 
+def main():
+    ## DRIVER CODE ##
+    ui = Table()
+    ui.start_game()
+
+if __name__=="__main__":
+    main()
