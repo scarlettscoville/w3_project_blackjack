@@ -6,18 +6,92 @@ from tkinter import messagebox
 
 root = Tk()
 root.title('Dream Team Blackjack')
-root.iconbitmap('./images/dtbj_favicon.png')
-root.geometry("1200x800")
-root.configure(background="#274e13")
-#--------------------START GAME CODE-----------------------------------------#
-class Dealer(): ##??
+root.iconbitmap('./images/Blackjack project icon.png')
+root.geometry("900x500")
+root.configure(background="green")
+
+
+my_frame = Frame(root, bg="green")
+my_frame.pack(pady=20)
+
+dealer_frame = LabelFrame(my_frame, text="Dealer", bd=0)
+dealer_frame.grid(row=0, column=0, padx=20, ipadx=20)
+
+player_frame = LabelFrame(my_frame, text="Player", bd=0)
+player_frame.grid(row=1, column=0, ipadx=20, pady=20,)
+
+dealer_label = Label(dealer_frame, text='')
+dealer_label.pack(pady=20)
+
+player_label = Label(player_frame, text='')
+player_label.pack(pady=20)
+
+shuffle_button = Button(root, text="Shuffle Deck", font=("Ariel", 14))
+shuffle_button.pack(pady=20)
+
+#hit_button = Button(root, text="Hit", font=("Ariel", 14), command= Player.hit_me())
+#hit_button.pack(pady=20)
+
+
+root.mainloop()
+#------------------------GAME--------------------------------------#
+
+
+class Dealer():
     def __init__(self):
         pass
     
-    def hit_me(self):
-        # if sum of two cards is 16 and below, hit
-            # if 17 or above, pass
-        pass
+    def hit_me():
+        global dealer_spot
+        if dealer_spot < 5:
+            try:
+                dealer_card = random.choice(deck)
+                deck.remove(dealer_card)
+                Dealer.append(dealer_card)
+                global dealer_image1, dealer_image2, dealer_image3, dealer_image4, dealer_image5
+                
+                if dealer_spot == 0:
+                    # Resize Card
+                    dealer_image = resize_cards(f'images/cards/{dealer_card}.png')
+                    # Output card to screen    
+                    dealer_label_1.config(image=dealer_image)
+                    # Increment dealer card by 1
+                    dealer_spot += 1
+                elif dealer_spot == 1:
+                    # Resize Card
+                    dealer_image1 = resize_cards(f'images/cards/{dealer_card}.png')
+                    # Output dealer_card to screen    
+                    dealer_label_1.config(image=dealer_image1)
+                    # Increment dealer card by 1
+                    dealer_spot += 1
+                elif dealer_spot == 2:
+                    # Resize Card
+                    dealer_image2 = resize_cards(f'images/cards/{dealer_card}.png')
+                    # Output card to screen    
+                    dealer_label_2.config(image=dealer_image2)
+                    # Increment dealer card by 1
+                    dealer_spot += 1
+                elif dealer_spot == 3:
+                    # Resize Card
+                    dealer_image3 = resize_cards(f'images/cards/{dealer_card}.png')
+                    # Output card to screen    
+                    dealer_label_3.config(image=dealer_image3)
+                    # Increment dealer card by 1
+                    dealer_spot += 1
+                elif dealer_spot == 4:
+                    # Resize Card
+                    dealer_image4 = resize_cards(f'images/cards/{dealer_card}.png')
+                    # Output card to screen    
+                    dealer_label_4.config(image=dealer_image4)
+                    # Increment dealer card by 1
+                    dealer_spot += 1
+
+                root.title(f'Dream Team Blackjack - {len(deck)} Cards Left')
+
+
+
+            except:
+                root.title(f'Dream Team Blackjack')
 
     def show_cards(self):
         pass
@@ -54,7 +128,22 @@ class Card(): #
         self.value = value
 
     def show(self):
-        print("{} of {}".format(self.value, self.suit))
+        print("{self.value} of {self.suit}")
+
+    # Resize Cards
+    def resize_cards(card):
+	    # Open the image
+	    our_card_img = Image.open(card)
+
+	    # Resize The Image 
+        # our_card_resize_image = our_card_img.resize((150, 218))
+	
+	    # output the card
+        # global our_card_image
+        # our_card_image = ImageTk.PhotoImage(our_card_resize_image)
+
+	    # Return that card
+        # return our_card_image    
 
     # Resizing cards
 
@@ -86,7 +175,8 @@ class Deck():
     def start_game(self): # Not active
         self.players = []
         self.dealers = []
-        
+
+       
 
 class Player_UI():
     def __init__(self):
@@ -101,14 +191,14 @@ class Player_UI():
         # graphics menu
         
     
-    def start_hand():
+    def start_hand(self):
         # -bets 
         # -deal cards (both cards available to player, only one dealer card shown)
         # -shuffle
         # input - play again?
         pass
     
-    def hit_me():
+    def hit_me(self):
         global player_spot
         if player_spot < 5:
             player_hand = random.choice(deck)
@@ -166,6 +256,24 @@ class Player_UI():
 
 #-----------------------------------------------------------------#
 #--------------START TKINTER FOOTER CODE--------------------------#
+def resize_cards(card):
+	# Open the image
+	our_card_img = Image.open(card)
+
+	# Resize The Image
+	our_card_resize_image = our_card_img.resize((150, 218))
+	
+	# output the card
+	global our_card_image
+	our_card_image = ImageTk.PhotoImage(our_card_resize_image)
+
+	# Return that card
+	return our_card_image
+
+
+
+
+
 my_frame = Frame(root, bg="#274e13")
 my_frame.pack(pady=20)
 
