@@ -135,15 +135,15 @@ class Card():
 	    # Open the image
 	    our_card_img = Image.open(card)
 
-	    # Resize The Image
-	    our_card_resize_image = our_card_img.resize((150, 218))
+	    # Resize The Image 
+        # our_card_resize_image = our_card_img.resize((150, 218))
 	
 	    # output the card
-	    global our_card_image
-	    our_card_image = ImageTk.PhotoImage(our_card_resize_image)
+        # global our_card_image
+        # our_card_image = ImageTk.PhotoImage(our_card_resize_image)
 
 	    # Return that card
-	    return our_card_image    
+        # return our_card_image    
 
 class Deck():
     def __init__(self):
