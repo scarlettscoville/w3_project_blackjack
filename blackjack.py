@@ -106,7 +106,7 @@ class Player():
         self.name = name
         self.hand = []
     
-    def hit_me(self):
+    def hit_me(self): ##??
         self.hand.append(deck.draw())
         player_hand = sum(self.hand)
         while self.hand:
@@ -122,7 +122,7 @@ class Player():
         for card in self.hand:
             card.show()
 
-class Card():
+class Card(): # 
     def __init__(self, suit, value):
         self.suit = suit
         self.value = value
@@ -145,9 +145,10 @@ class Card():
 	    # Return that card
         # return our_card_image    
 
+    # Resizing cards
+
 class Deck():
     def __init__(self):
-        pass
         self.cards = []
 
     def build_deck(self):
@@ -175,7 +176,7 @@ class Deck():
         for card in self.cards:
             card.show()
 
-    def start_game(self):
+    def start_game(self): # Not active
         self.players = []
         self.dealers = []
 
@@ -204,53 +205,52 @@ class Player_UI():
     def hit_me(self):
         global player_spot
         if player_spot < 5:
-            try:
-                player_card = random.choice(deck)
-                deck.remove(player_card)
-                player.append(player_card)
-                global player_image1, player_image2, player_image3, player_image4, player_image5
-                
-                if player_spot == 0:
-                    # Resize Card
-                    player_image = resize_cards(f'images/cards/{player_card}.png')
-                    # Output card to screen    
-                    player_label_1.config(image=player_image)
-                    # Increment player card by 1
-                    player_spot += 1
-                elif player_spot == 1:
-                    # Resize Card
-                    player_image1 = resize_cards(f'images/cards/{player_card}.png')
-                    # Output card to screen    
-                    player_label_1.config(image=player_image1)
-                    # Increment player card by 1
-                    player_spot += 1
-                elif player_spot == 2:
-                    # Resize Card
-                    player_image2 = resize_cards(f'images/cards/{player_card}.png')
-                    # Output card to screen    
-                    player_label_2.config(image=player_image2)
-                    # Increment player card by 1
-                    player_spot += 1
-                elif player_spot == 3:
-                    # Resize Card
-                    player_image3 = resize_cards(f'images/cards/{player_card}.png')
-                    # Output card to screen    
-                    player_label_3.config(image=player_image3)
-                    # Increment player card by 1
-                    player_spot += 1
-                elif player_spot == 4:
-                    # Resize Card
-                    player_image4 = resize_cards(f'images/cards/{player_card}.png')
-                    # Output card to screen    
-                    player_label_4.config(image=player_image4)
-                    # Increment player card by 1
-                    player_spot += 1
+            player_hand = random.choice(deck)
+            deck.remove(player_hand)
+            player.append(player_hand)
+            global player_image, player_image1, player_image2, player_image3, player_image4
+            
+            if player_spot == 0:
+                # Resize Card
+                player_image = resize_cards(f'images/cards/{player_card}.png')
+                # Output card to screen    
+                player_label_1.config(image=player_image)
+                # Increment player card by 1
+                player_spot += 1
+            elif player_spot == 1:
+                # Resize Card
+                player_image1 = resize_cards(f'images/cards/{player_card}.png')
+                # Output card to screen    
+                player_label_1.config(image=player_image1)
+                # Increment player card by 1
+                player_spot += 1
+            elif player_spot == 2:
+                # Resize Card
+                player_image2 = resize_cards(f'images/cards/{player_card}.png')
+                # Output card to screen    
+                player_label_2.config(image=player_image2)
+                # Increment player card by 1
+                player_spot += 1
+            elif player_spot == 3:
+                # Resize Card
+                player_image3 = resize_cards(f'images/cards/{player_card}.png')
+                # Output card to screen    
+                player_label_3.config(image=player_image3)
+                # Increment player card by 1
+                player_spot += 1
+            elif player_spot == 4:
+                # Resize Card
+                player_image4 = resize_cards(f'images/cards/{player_card}.png')
+                # Output card to screen    
+                player_label_4.config(image=player_image4)
+                # Increment player card by 1
+                player_spot += 1
 
                 root.title(f'Dream Team Blackjack - {len(deck)} Cards Left')
 
 
 
-            except:
+        
                 root.title(f'Dream Team Blackjack')
 
         # input: Do you want to hit or pass?
