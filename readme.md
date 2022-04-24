@@ -9,13 +9,13 @@
 
 **Dakodah** 
 
-- 
+- Player(UI)
 
 **Scarlett**
 
-- 
+- Deck and GUI
 
 
 **Grady** 
 
-- 
+- Player and Dealer
