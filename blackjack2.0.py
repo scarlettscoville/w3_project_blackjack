@@ -88,8 +88,22 @@ class Table():
         if play_game == "Y":
             Table.start_game() 
         self.build_deck()
+        self.run_game()
+        
+    def run_game(self):
         self.cards.shuffle_cards()
-        self.deal()
+        self.deal() # dealer has two cards, player has two cards
+        # option for player to hit or stand
+        game = self.bust()
+        if game == "BUST!": 
+            return "Dealer Wins"
+        elif game == "STAND":
+            self.dealer_bust() # determine if the player's stand wins or the Dealer prevails
+
+        elif game == "BLACKJACK!!!":
+            return "Player Wins"
+        
+        
     
     def hit_me(self):
         global player_spot
@@ -149,49 +163,49 @@ class Table():
                 return "BLACKJACK!!!"
         return self
 
-    def hit_me(self):
-        global player_spot
-        if player_spot < 5:
-            player_hand = random.choice(self.cards)
-            self.cards.remove(player_hand)
-            self.hand.append(player_hand)
+    def dealer_hit(self):
+        global dealer_spot
+        if dealer_spot < 5:
+            dealer_view = random.choice(self.cards)
+            self.cards.remove(dealer_view)
+            self.hand.append(dealer_view)
             global player_image, player_image1, player_image2, player_image3, player_image4
             
-            if player_spot == 0:
+            if dealer_spot == 0:
                 # Resize Card
                 player_image = self.resize_cards(f'images/cards/{player_card}.png')
                 # Output card to screen    
                 player_label_1.config(image=player_image)
                 # Increment player card by 1
-                player_spot += 1
+                dealer_spot += 1
             elif player_spot == 1:
                 # Resize Card
                 player_image1 = self.resize_cards(f'images/cards/{player_card}.png')
                 # Output card to screen    
                 player_label_1.config(image=player_image1)
                 # Increment player card by 1
-                player_spot += 1
+                dealer_spot += 1
             elif player_spot == 2:
                 # Resize Card
                 player_image2 = self.resize_cards(f'images/cards/{player_card}.png')
                 # Output card to screen    
                 player_label_2.config(image=player_image2)
                 # Increment player card by 1
-                player_spot += 1
+                dealer_spot += 1
             elif player_spot == 3:
                 # Resize Card
                 player_image3 = self.resize_cards(f'images/cards/{player_card}.png')
                 # Output card to screen    
                 player_label_3.config(image=player_image3)
                 # Increment player card by 1
-                player_spot += 1
+                dealer_spot += 1
             elif player_spot == 4:
                 # Resize Card
                 player_image4 = self.resize_cards(f'images/cards/{player_card}.png')
                 # Output card to screen    
                 player_label_4.config(image=player_image4)
                 # Increment player card by 1
-                player_spot += 1
+                dealer_spot += 1
 
     def dealer_bust(self):
         dealer_total = sum(self.dealer_hand)
@@ -202,5 +216,5 @@ class Table():
                 elif dealer_total <= 21 and dealer_total < self.player_hand:
                     return "Player Wins"
             elif dealer_total < 16:
-                self.hit_me()
+                self.dealer_hit()
 
