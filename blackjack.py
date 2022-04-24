@@ -1,7 +1,7 @@
 # Let's go, Dream Team!
 from tkinter import *
 import random
-from PIL import Image, ImageTk
+#from PIL import Image, ImageTk
 from tkinter import messagebox
 
 root = Tk()
