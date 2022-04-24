@@ -33,13 +33,12 @@ class Player():
         self.hand = []
     
     def hit_me(self):
-        #else loop back
-        pass
+        self.hand.append(deck.draw())
+        return self
 
     def show_cards(self):
         for card in self.hand:
             card.show()
-        pass
 
 class Card():
     def __init__(self, suit, value):
@@ -60,13 +59,15 @@ class Deck():
             for value in range(1,14):
                 self.cards.append(Card(suit, value))
         
-    def shuffle_cards():
-        pass
+    def shuffle_cards(self):
+        for i in range(len(self.cards)-1, 0, -1):
+            r = random.randint(0, i)
+            self.cards[i], self.cards[r] = self.cards[r], self.cards[i]
        
-    def draw_cards(self):
-        pass
+    def draw(self):
+        return self.cards.pop()
 
-    def deal_cards():
+    def deal():
         pass
     
     def show(self):
@@ -77,7 +78,8 @@ class Player_UI():
     def __init__(self):
         pass
 
-    def start_game():
+    def start_game(self):
+        # self.cards.shuffle_cards()
         # 1st - option to start game upon opening program
         # graphics menu
         pass
