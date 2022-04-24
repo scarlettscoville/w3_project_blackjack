@@ -1,7 +1,7 @@
 # Let's go, Dream Team!
 from tkinter import *
 import random
-# from PIL import Image, ImageTk
+from PIL import Image, ImageTk
 from tkinter import messagebox
 
 root = Tk()
@@ -81,6 +81,11 @@ class Deck():
     def show(self):
         for card in self.cards:
             card.show()
+
+    def start_game(self):
+        self.players = []
+        self.dealers = []
+        
 
 class Player_UI():
     def __init__(self):
