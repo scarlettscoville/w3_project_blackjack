@@ -82,7 +82,7 @@ class Player:
                 print('|       |')
                 print('| Team  |')
                 print('└───────┘') 
-        print("Value:", self.get_value())
+        print("Total Card Value: ->", [self.get_value()])
 
 class Table():
     def __init__(self):
@@ -106,7 +106,7 @@ class Table():
             self.player_hand.display()
             print()
             print("♠️", "♣", "♥", "♦","♠️", "♣", "♥", "♦","♠️", "♣", "♥", "♦")
-            print("------------$$---------")
+            print("----------$$-----------")
             print("♠️", "♣", "♥", "♦","♠️", "♣", "♥", "♦","♠️", "♣", "♥", "♦")
             print()
             print("Here is the Dealer's Hand: ")
