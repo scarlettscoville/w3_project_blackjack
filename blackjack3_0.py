@@ -129,7 +129,7 @@ class Table():
                     self.player_hand.add_card(self.deck.deal_card())
                     self.player_hand.display()
                     if self.player_hand_over():
-                        print("You're bad at this! You lost!")
+                        print("You're bad at this! You lost! 🤣🤣🤣")
                         game_over = True
                 else:
                     player_hand_value = self.player_hand.get_value()
@@ -139,19 +139,18 @@ class Table():
                     print("Your hand ", player_hand_value)
                     print("Dealer hand ", dealer_hand_value)
 
-                    if player_hand_value > dealer_blackjack:
+                    if player_hand_value > dealer_hand_value:
                         print("Looks like you chose wisely, you won! 🙌")
-                        playing = False
-                    elif player_hand_value == dealer_blackjack:
-                        print("Blackjack push! It's a tie")
+                    elif player_hand_value == dealer_hand_value:
+                        print("Blackjack push! It's a tie 🫠")
                     else:
-                        print("Wow you're bad at this.. Dealer Won!")
+                        print("Wow you're bad at this.. Dealer Won! 💸💸💸 ")
 
                     game_over = True
 
-            play_again = input("Would you like to lose more money? [Y / N] ").capitalize()
+            play_again = input("Would you like to lose some money? [Y / N] ").capitalize()
             while play_again.capitalize() not in ["Y", "N"]:
-                play_again = input("Would you like to lose more money? [Y / N] ").capitalize()
+                play_again = input("Would you like to lose some money? [Y / N] ").capitalize()
             if play_again.capitalize() == "N":
                 print("Thanks for playing! 🤑🤑🤑")
                 playing = False
@@ -175,9 +174,9 @@ class Table():
         if player_has_blackjack and dealer_has_blackjack:
             print("It looks like a draw partner! 🤠🤠🤠 ")
         elif player_has_blackjack:
-            print("You have Blackjack, You Win! 💸")
+            print("You have Blackjack, You Win!")
         elif dealer_has_blackjack:
-            print("Dealer has Blackjack, Dealer Wins! 🫴🫴")
+            print("Dealer has Blackjack, Dealer Wins! 💸💸💸")
 
 if __name__ == "__main__":
     test = Table()
