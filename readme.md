@@ -33,6 +33,6 @@
 
 ### We hopped on a call...focused on functional code...
 
-# And PERSEVERED!
+# And did the best we could...
 
 ## A pure, collaborative effort by the Dream Team!
