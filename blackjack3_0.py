@@ -14,7 +14,7 @@
     # Running Score
     # Dealer Hand
     # Create a method if the player got Blackjack on the first round (if val == 21 return BlackJack)
-    # 
+
 import random
 
 class Deck():
