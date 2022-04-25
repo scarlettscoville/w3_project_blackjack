@@ -1,95 +1,180 @@
 ## Classes:
-    # Deck
     # Card
+    # Deck
     # Player
     # Table
+    
+# Tasks
+    # Logic who states who wins
+        # If-Else for bust logic
+    # Finishing out which cards indicate which values (K,Q,J,A)
+    # Hit Me Function
+        # Stand function
+    # Dealer hits if value below 16
+    # Running Score
+    # Dealer Hand
+    # Create a method if the player got Blackjack on the first round (if val == 21 return BlackJack)
 
 import random
 
-class Deck():
-    global cards
-    cards = []
+class Card:
+
+    def __init__(self, suit, value):
+        self.suit = suit
+        self.value = value
+        
+        
+
+    def __repr__(self):     # Able to customize the string representation of the object. By default the output contains the memory address and the __repr__ addresses this issue
+         return f'{self.value} of  {self.suit}'
+
+class Deck:
 
     def __init__(self):
-        self.build_deck()
+        self.cards = [Card(suit, value) for suit in ["Spades", "Clubs", "Hearts", "Diamonds"] for value in
+                    ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]]
         
-    def build_deck(self):
-        for suits in ["Spades", "Clubs", "Diamonds", "Hearts"]:
-            for value in range(1,14):
-                cards.append(Card(suits,value))
-
     def shuffle_deck(self):
-        for i in range(len(cards) -1, 0, -1):
-            r = random.randint(0, i)
-            cards[i], cards[r] = cards[r], cards[i]
-
-    def draw_card(self):
-        return cards.pop()
-
-    def show(self):
-        for card in cards:
-            card.show()
-
-class Card(Deck):
-
-    def __init__(self, suit, val):
-        self.suit = suit
-        self.val = val
-
-    def show(self):
-        print(f'{self.val} of {self.suit}')
-
-class Player(Deck):
-
-    def __init__(self, name):
-        self.name = name
-        self.hand = []
-        
-
-    def draw_card(self, deck):
-        self.hand.append(deck.draw_card())
-        return self
+        if len(self.cards) > 1:
+            random.shuffle(self.cards)
 
     def deal_card(self):
-        hand = []
-        for card in range(1):
-            self.draw_card(deck)
-        return hand
+        if len(self.cards) > 1:
+            return self.cards.pop(0)
 
-    def show_hand(self):
-        for card in self.hand:
-            card.show()
+class Player:
 
-class Table_UI(Deck):
-    def __init__(self, player):
-        self.player = player
+    def __init__(self, dealer=False):
+        self.dealer = dealer
+        self.cards = []
+        self.value = 0
+        self.rank = '♥♦♣♠'
+        
+        
+    def add_card(self, card):
+        self.cards.append(card)
+
+    def rank_value(self):
+        self.value = 0
+        has_ace = False
+        for card in self.cards:
+            if card.value.isnumeric():
+                self.value += int(card.value)
+            else:
+                if card.value == "A":
+                    has_ace = True
+                    self.value += 11
+                else:
+                    self.value += 10
+        if has_ace and self.value > 21:
+            self.value -=10
+
+    def get_value(self):
+        self.rank_value()
+        return self.value
+
+    def display(self):
+        if self.dealer:
+            print("Hidden")
+            print(self.cards[1])
+        else:
+            for card in self.cards:
+                print(card)
+            print("Value:", self.get_value())
+
+class Table():
+    def __init__(self):
+        pass
 
     def play_game(self):
-        user_opt = input("Welcome to DT Blackjack. Would you like to play? [Y/N] ").capitalize()
-        if user_opt == "Y":
-            player_hand = self.player.deal_card()
-            self.player.show_hand()
+        playing = True
 
-            
+        while playing:
+            self.deck = Deck()
+            self.deck.shuffle_deck()
 
-            
+            self.player_hand = Player()
+            self.dealer_hand = Player(dealer=True)
 
-        
+            for i in range(2):
+                self.player_hand.add_card(self.deck.deal_card())
+                self.dealer_hand.add_card(self.deck.deal_card())
 
+            print("Here is what you have: ")
+            self.player_hand.display()
+            print("------------$$-------------")
+            print("------------$$-------------")
+            print("Here is the Dealer's Hand: ")
+            self.dealer_hand.display()
+            print()
 
+            game_over = False
 
+            while not game_over:
+                player_blackjack, dealer_blackjack = self.check_for_blackjack()
+                if player_blackjack or dealer_blackjack:
+                    game_over = True
+                    self.show_blackjack(player_blackjack, dealer_blackjack)
+                    continue
 
+                choose_wisely = input("What would you like to do?  [Hit (H) or Stand (S)]? ").capitalize()
+                while choose_wisely not in ["H", "S"]:
+                    choose_wisely = input("What would you like to do?  [Hit (H) or Stand (S)]? ").capitalize()
+                if choose_wisely == "H":
+                    self.player_hand.add_card(self.deck.deal_card())
+                    self.player_hand.display()
+                    if self.player_hand_over():
+                        print("You're bad at this! You lost!")
+                        game_over = True
+                else:
+                    player_hand_value = self.player_hand.get_value()
+                    dealer_hand_value = self.dealer_hand.get_value()
 
-deck = Deck()
-deck.shuffle_deck()
+                    print("Final Results")
+                    print("Your hand ", player_hand_value)
+                    print("Dealer hand ", dealer_hand_value)
 
-deck = Deck()
-deck.shuffle_deck()
+                    if player_hand_value > dealer_blackjack:
+                        print("Looks like you chose wisely, you won! 🙌")
+                        playing = False
+                    elif player_hand_value == dealer_blackjack:
+                        print("Blackjack push! It's a tie")
+                    else:
+                        print("Wow you're bad at this.. Dealer Won!")
 
-dak = Player("Dak")
-dak.deal_card()
+                    game_over = True
 
-test = Table_UI(dak)
-test.play_game()
-# dak.show_hand()
-# dak.show_dealer()
+                play_again = input("Would you like to lose more money? [Y / N] ").capitalize()
+                while play_again.capitalize() not in ["Y", "N"]:
+                    play_again = input("Would you like to lose more money? [Y / N] ").capitalize()
+                if play_again.capitalize() == "N":
+                    print("Thanks for playing!")
+                    playing = False
+                else:
+                    game_over = False
+    
+    def player_hand_over(self):
+        return self.player_hand.get_value() > 21
+
+    def check_for_blackjack(self):
+        player = False
+        dealer = False
+        if self.player_hand.get_value() == 21:
+            player = True
+        if self.dealer_hand.get_value() == 21:
+            dealer = True
+
+        return player, dealer
+
+    def show_blackjack(self, player_has_blackjack, dealer_has_blackjack):
+        if player_has_blackjack and dealer_has_blackjack:
+            print("Both players have blackjack! Draw!")
+        elif player_has_blackjack:
+            print("You have Blackjack, You Win!")
+        elif dealer_has_blackjack:
+            print("Dealer has Blackjack, Dealer Wins!")
+
+if __name__ == "__main__":
+    test = Table()
+    test.play_game()
+       
