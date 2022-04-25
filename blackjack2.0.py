@@ -1,10 +1,7 @@
 # Let's go, Dream Team!
 #from tkinter import *
 import random
-#from PIL import Image, ImageTk
-#from tkinter import messagebox
 
-#t.configure(background="#274e13")
 ## --------------------------------------------------------------------------##
 
 ## Classes:
@@ -14,7 +11,7 @@ import random
     # Table
 
 #-----------------------------------------------------------------------------#
-class Card(): # 
+class Card():  
     def __init__(self, suit, value):
         self.suit = suit
         self.value = value
